@@ -1,12 +1,29 @@
+import { useState, useEffect } from "react";
+
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
-import "./HomePage.css";
 import searchIcon from "../../assets/frontend/icons8-search.svg";
+import wikipediaLogo from "../../assets/frontend/Wikipedia-logo.png";
+import "./HomePage.css";
+import { Article } from "../../types/Article";
+import { fetchRandomArticles } from "../../services/api";
 
 const HomePage = () => {
+  const [articles, setArticles] = useState<Article[]>([]);
+
+  useEffect(() => {
+    const getRandomArticles = async () => {
+      const fetchedArticles = await fetchRandomArticles(10);
+      setArticles(fetchedArticles);
+    };
+
+    getRandomArticles();
+  }, []);
+
   return (
     <div className="homepage">
       <div className="top-section">
         <div className="title-header">
+          <img src={wikipediaLogo} alt="" className="wikipedia-logo" />
           <h1>WIKIPEDIA</h1>
           <p>
             Unlock the door to a universe of knowledge. Discover, explore, and
@@ -20,7 +37,7 @@ const HomePage = () => {
             <input
               type="text"
               className="search-input"
-              placeholder="Explore..."
+              placeholder="Explore the world..."
             />
             <img src={searchIcon} alt="Search Icon" className="search-icon" />
           </div>
@@ -30,46 +47,13 @@ const HomePage = () => {
       <div className="bottom-section">
         <h2>Explore</h2>
         <div className="explore-articles-card">
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
-          <ArticleCard
-            imageUrl="https://images.unsplash.com/photo-1738748986807-bf1e6d00d58d?q=80&w=1375&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            title="Article's Title"
-            content="Article's Content"
-          />
+          {articles.map((article) => (
+            <ArticleCard
+              key={article.id}
+              title={article.title}
+              content={article.content}
+            />
+          ))}
         </div>
       </div>
     </div>
