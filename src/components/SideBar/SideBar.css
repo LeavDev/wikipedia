@@ -1,0 +1,56 @@
+.sidebar-wikipedia-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1em;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 2em;
+  padding: 3em 2em;
+  background-color: #ffffff;
+}
+
+.sidebar-header h2 {
+  font-size: 2em;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+
+.sidebar-header h5 {
+  font-size: 0.8em;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+/* sidebar option styles */
+.sidebar-options {
+  padding: 0 2em;
+}
+
+.sidebar-options h5 {
+  font-size: 0.8;
+  margin-bottom: 1em;
+  font-family: "Open Sans", sans-serif;
+  color: #495057;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.sidebar-options ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-options li {
+  /* margin-bottom: 0.5em; */
+  margin: 1.5em 1em;
+}
+
+.sidebar-options ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+}

@@ -4,9 +4,14 @@ import "./ArticleCard.css";
 interface ArticleCardProps {
   title: string;
   content: string;
+  handleArticleClick: () => void;
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ title, content }) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({
+  title,
+  content,
+  handleArticleClick,
+}) => {
   const maxCharacters = 150;
 
   const truncateContent = (text: string, limit: number) => {
@@ -22,7 +27,13 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ title, content }) => {
         <p className="article-card-content">
           {truncateContent(content, maxCharacters)}
         </p>
-        <a className="button-to-read" href="">
+        <a
+          className="button-to-read"
+          onClick={(e) => {
+            e.preventDefault();
+            handleArticleClick();
+          }}
+        >
           Read
         </a>
       </div>
